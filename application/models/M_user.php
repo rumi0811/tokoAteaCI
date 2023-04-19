@@ -16,7 +16,18 @@ class M_user extends CI_Model {
         $this->db->insert('tbl_user', $data);
         
     }
+
+    public function edit($data){
+        $this->db->where('id_user', $data['id_user']);
+        $this->db->update('tbl_user', $data);
+        
+    }
     
+    public function delete($data){
+        $this->db->where('id_user', $data['id_user']);
+        $this->db->delete('tbl_user', $data);
+        
+    }
 
 }
 
