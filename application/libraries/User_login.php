@@ -11,6 +11,7 @@ class User_login
         $this->ci =& get_instance();
         $this->ci->load->model('m_auth');
     }
+
     public function login($username, $password)
     {
     $cek = $this->ci->m_auth->login_user($username, $password);
@@ -23,16 +24,34 @@ class User_login
         $this->ci->session->set_userdata('username', $username);
         $this->ci->session->set_userdata('nama_user', $nama_user);
         $this->ci->session->set_userdata('level_user', $level_user);
+        
 
         // redirect ke admin
         redirect('admin');
 
     }else{
-        $this->ci->session->$this->session->set_flashdata('pesan', 'Username atau password salah');
+        $this->ci->session->set_flashdata('error', 'Username atau password salah');
         redirect('auth/login_user');
         
     }
     
+    }
+
+    public function proteksi_halaman(){
+        if ( $this->ci->session->userdata('username')=='') {
+            # code...
+            $this->ci->session->set_flashdata('error', 'Anda belum login!!!');
+            redirect('auth/login_user');
+        } 
+    }
+    
+    public function logout(){
+        $this->ci->session->unset_userdata('username');
+        $this->ci->session->unset_userdata('nama_user');
+        $this->ci->session->unset_userdata('level_user');
+        $this->ci->session->set_flashdata('pesan', 'Anda berhasil logout!!!');
+        redirect('auth/login_user');
+        
     }
 }
 

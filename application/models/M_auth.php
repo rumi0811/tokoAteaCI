@@ -18,4 +18,3 @@ class M_auth extends CI_Model {
 
 }
 
-/* End of file ModelName.php */
