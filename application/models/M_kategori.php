@@ -6,9 +6,7 @@ class M_kategori extends CI_Model {
         $this->db->select('*');
         $this->db->from('tbl_kategori');
         $this->db->order_by('id_kategori', 'desc');      
-        return $this->db->get()->result();
-        
-      
+        return $this->db->get()->result();      
     }
 
     public function add($data){

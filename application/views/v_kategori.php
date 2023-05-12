@@ -140,7 +140,6 @@
 
 
             <!-- modal dellete -->
-             <!-- modal edit -->
              <?php
         foreach ($kategori as $key => $value) { ?>
 

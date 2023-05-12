@@ -27,7 +27,9 @@
 
         <!-- menu dashboard -->
         <li class="nav-item">
-            <a href="#" class="nav-link" >
+        <a href="<?= base_url('admin') ?>" class="nav-link <?php if($this->uri->segment(1)=='admin'){
+              echo "active";
+            } ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -59,45 +61,47 @@
             </a>
         </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+        <!-- Start ini sudah benar ya -->
+        <!-- <li class="nav-item">
+            <a href="<?= base_url('gambarbarang') ?>"class="nav-link <?php if($this->uri->segment(1)=='gambarbarang'){
+              echo "active";
+            } ?>">
+              <i class="nav-icon fas fa-image"></i>
               <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
+                Gambar Barang
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+        </li> -->
+        <!-- Finish ini sudah benar, tidak ada yang diganti -->
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+
+
+        
+        <!-- <li class="nav-item">
+            <a href="<?= base_url('laporan') ?>" class="nav-link">
+              <i class="nav-icon  fa fa-file"></i>
               <p>
-                Simple Link
+                Laporan
               </p>
             </a>
-          </li>
+          </li> -->
+
+
+        <!-- <li class="nav-item">
+            <a href="<?= base_url('admin/setting') ?>" class="nav-link">
+              <i class="nav-icon  fa fa-asterisk"></i>
+              <p>
+                Setting
+              </p>
+            </a>
+          </li> -->
 
           <!-- Menambahkan menu user dari kopas di sample link -->
           <li class="nav-item">
             <a href="<?= base_url('user') ?>" class="nav-link <?php if($this->uri->segment(1)=='user'){
               echo "active";
             } ?>">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fa fa-user"></i>
               <p>
                 User
               </p>

@@ -7,16 +7,16 @@
                   </ol>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider1.jpg">
+                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider3.png">
                     </div>
                     <div class="carousel-item">
-                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider2.jpg">
+                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider2.png">
                     </div>
                     <div class="carousel-item">
-                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider3.jpg">
+                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider1.png">
                     </div>
                     <div class="carousel-item">
-                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider4.jpg">
+                      <img class="d-block w-100" src="<?php base_url() ?>assets/slider/slider4.png">
                     </div>
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -31,45 +31,88 @@
 
     <div class="card card-solid">
         <div class="card-body pb-0">
-          <div class="row d-flex align-items-stretch">
+          <div class="row">
 
 
+<?php foreach ($barang as $key => $value) { ?>
 
-          <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+
+          <div class="col-sm-4">
+<!-- tambahkan -->
+
+<?php 
+echo form_open('belanja/add');
+echo form_hidden('id', $value->id_barang);
+echo form_hidden('qty', 1);
+echo form_hidden('price', $value->harga);
+echo form_hidden('name', $value->nama_barang);
+echo form_hidden('redirect_page', str_replace('index.php/' , '' , current_url()));
+?>
               <div class="card bg-light">
                 <div class="card-header text-muted border-bottom-0">
-                  Digital Strategist
+                <h2 class="lead"><b><?= $value->nama_barang ?></b></h2>
+                <p class="text-muted text-sm"><b>Kategori : </b><?= $value->nama_kategori ?></p>
                 </div>
                 <div class="card-body pt-0">
                   <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="<?php base_url() ?>template/dist/img/user1-128x128.jpg" alt="" class="img-circle img-fluid">
+
+                    <div class="col-12 text-center">
+                      <img src="<?= base_url('assets/gambar/' . $value->gambar) ?>" width="300px" height="250px">
                     </div>
                   </div>
                 </div>
                 <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal">
-                      <i class="fas fa-comments"></i>
+
+                <div class="row">
+
+                <div class="col-sm-6">
+                <div class="text-left">
+                <h4><span class="badge bg-primary"> Rp. <?= number_format($value->harga, 0) ?>,-</span> </h4>
+                </div>
+                </div>
+
+                <div class="col-sm-6">
+                <div class="text-right">
+                    <a href="<?= base_url('home/detail_barang/' . $value->id_barang) ?>" class="btn btn-sm btn-success">
+                      <i class="fas fa-eye"></i>
                     </a>
-                    <a href="#" class="btn btn-sm btn-primary">
-                      <i class="fas fa-user"></i> View Profile
-                    </a>
+
+                    <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
+                      <i class="fas fa-cart-plus"></i>
+                    </button>
+
                   </div>
+
+
+                </div>
+
                 </div>
               </div>
             </div>
-            
+            <?php echo form_close(); ?>
+          </div>
+       <?php   } ?>
 
 
           </div>
         </div>
     </div>
+         
+    <script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+  $(function() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'Barang berhasil ditambahkan ke keranjang!'
+      })
+    });
+  });
+  </script>

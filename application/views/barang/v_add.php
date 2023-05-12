@@ -7,7 +7,21 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <?php 
-                echo form_open_multipart('barang/add') ?>
+
+
+              // pesan error utuk gagal form kosong 
+              echo validation_errors('<div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-info"></i>', '</h5> </div>');
+
+
+              // gagal upload gambar
+              if (isset($error_upload)) {
+                echo '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-info"></i>' . $error_upload . '</h5> </div>';
+              }
+              echo form_open_multipart('barang/add') ?>
 
                 <div class="form-group">
                         <label>Nama Barang</label>
@@ -17,7 +31,7 @@
 
 
                 <div class="row">
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
                       <div class="form-group">
                         <label>Kategori</label>
                         <select name="id_kategori" class="form-control">
@@ -30,10 +44,17 @@
                     </div>
 
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                       <div class="form-group">
                         <label>Harga Barang</label>
                         <input name="harga"  class="form-control" placeholder="Harga Barang" value="<?= set_value('harga') ?>">
+                      </div>                     
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Berat Barang</label>
+                        <input type="number" name="berat" min="0" class="form-control" placeholder="Berat Barang" value="<?= set_value('berat ') ?>">
                       </div>                     
                     </div>
                   </div>
